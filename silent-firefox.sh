@@ -65,6 +65,18 @@ SKIP_POLICIES=false
 SKIP_CLEANUP=false
 
 # ============================================================================
+# DETECT REAL USER (handles sudo)
+# ============================================================================
+# When running with sudo, $HOME points to /root. We need the actual user's home.
+if [[ -n "$SUDO_USER" ]]; then
+    REAL_USER="$SUDO_USER"
+    REAL_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+else
+    REAL_USER="$USER"
+    REAL_HOME="$HOME"
+fi
+
+# ============================================================================
 # CONFIGURATION: All Firefox Silent Preferences
 # ============================================================================
 generate_silent_preferences() {
@@ -290,10 +302,11 @@ print_help() {
 
 get_firefox_profiles_path() {
     # Standard Firefox profile locations on Linux
+    # Uses REAL_HOME to handle sudo correctly
     local profile_paths=(
-        "$HOME/.mozilla/firefox"
-        "$HOME/snap/firefox/common/.mozilla/firefox"
-        "$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox"
+        "$REAL_HOME/.mozilla/firefox"
+        "$REAL_HOME/snap/firefox/common/.mozilla/firefox"
+        "$REAL_HOME/.var/app/org.mozilla.firefox/.mozilla/firefox"
     )
     
     for path in "${profile_paths[@]}"; do
