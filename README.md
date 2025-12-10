@@ -4,7 +4,7 @@
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-5391FE?style=flat-square&logo=powershell&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![License](https://img.shields.io/badge/License-GPL%203.0-blue?style=flat-square)
 
 ## The Problem
 
@@ -205,7 +205,7 @@ Contributions are welcome! If you find additional preferences that should be dis
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details.
+GPL 3.0 License - See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
